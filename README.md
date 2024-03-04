@@ -1,4 +1,4 @@
-# Proyecto Modulo Sistema de Costos
+# Proyecto Modulo 1 Sistema de Costos
 
 Proyecto realizado en PSeInt, el fin es el desarrollo de un algoritmo que calcule el precio final de un producto. El algoritmo tiene que considerar los siguientes requerimientos:
 
@@ -891,7 +891,7 @@ si elim_algo = "aros" O elim_algo = "llaveros" Entonces
 FinAlgoritmo
 ```
 ### Notas:
- Los valores de los productos están pensados en la moneda local (Peso chileno).
+- Los valores de los productos están pensados en la moneda local (Peso chileno).
 - Los costos de envíos aplicados por carga no corresponden a valores reales, son solo de uso para la realización del proyecto.
 - El peso de los productos esta hecho en Gramos.
 - En chile a los aretes también se les llama "aros".
