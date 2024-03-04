@@ -896,6 +896,8 @@ FinAlgoritmo
 ### Notas:
 - Los valores de los productos están pensados en la moneda local (Peso chileno).
 - Los costos de envíos aplicados por carga no corresponden a valores reales, son solo de uso para la realización del proyecto.
+- El IVA (Impuesto al Valor Agregado) ya se encuentra en cada producto, la boleta muestra el costo pagado en impuestos al total sin aplicar ningún descuento.
+- El descuento no contempla el costo del envió.
 - El peso de los productos esta hecho en Gramos.
 - En chile a los aretes también se les llama "aros".
 
