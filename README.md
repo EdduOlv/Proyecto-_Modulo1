@@ -1,11 +1,50 @@
+# Proyecto Modulo Sistema de Costos
+
+Proyecto realizado en PSeInt, el fin es el desarrollo de un algoritmo que calcule el precio final de un producto. El algoritmo tiene que considerar los siguientes requerimientos:
+
+
+
+## Requerimientos del proyecto
+
+ - Leer el precio original del producto.
+ - Aplicar un descuento al producto.
+ - Aplicar impuestos al producto.
+ - Si el cliente compra más de un artículo, aplicar un descuento por cantidad.
+ - Calcular el costo de envío basado en el destino y el peso del paquete.
+ - Calcular el costo final del producto sumando el precio con descuento, impuestos, descuento por cantidad y costo de envío.
+ - Mostrar el costo final del producto, desglosando los diferentes componentes.
+
+ ## Mi proyecto
+
+Mi algoritmo está pensado en la venta online de una tienda de aros (aretes) a por mayor, que tiene dos tipos de productos aretes y llaveros con diferentes tipos de envió.
+Dentro del algoritmo se escogerán alternativas de aretes y sus unidades además de añadir llaveros para la aplicación de descuentos por unidad. Finalmente concluye con la selección del tipo de despacho, y según las unidades se determina peso de la carga lo que conlleva cargos adicionales por peso.
+
+
+
+
+
+
+## Funcionamiento
+
+
+
+
+Funciones
+ -
+ 
+ - Funciones aritméticas.
+ ```
 //Funcion de multiplicacion
 Funcion total <- multiplicacion ( n1,n2 )
 	total<- n1*n2
 Fin Funcion
+
 //Funcion de sumar
 Funcion resultado <- suma ( n1,n2 )
 	resultado<-n1+n2
-Fin Funcion
+```
+ - Función para determinar el descuento aplicado el producto por unidades y cupón de descuento por cliente nuevo.
+ ```
 //Funcion para seleccionar el tipo de descuento segun unidades, llaveros y cliente nuevo
 Funcion descuento_fun <- calcular_descuento ( unidades_aros,unidades_llav,respuesta_client )
 	descuento_fun<-1
@@ -26,7 +65,9 @@ Funcion descuento_fun <- calcular_descuento ( unidades_aros,unidades_llav,respue
 		descuento_fun<-descuento_fun-descuento_c
 	Fin Si
 Fin Funcion
-//Funcion para calcular el costo del despacho segun peso de total de aros y llaveros
+```
+ - Función para determinar costo adicional al envió. El peso se calculará en base a las unidades de aretes y llaveros.
+```
 Funcion envio <- calcular_peso ( peso_total,envio )
 	envio <- 1
 	envio1 <- 1.15
@@ -42,9 +83,11 @@ Funcion envio <- calcular_peso ( peso_total,envio )
 		envio <- envio3
 	Fin Si
 Fin Funcion
-
-Algoritmo Proyecto_Modulo1
-	
+```
+Variables
+ -
+ - Tipos de Variables
+ ```
 	//Definir Variables
 	
 	definir respuesta_client Como Caracter
@@ -65,17 +108,21 @@ Algoritmo Proyecto_Modulo1
 	definir peso como real
 	definir impuesto Como Real
 	definir descuento_total Como Real
-	
-	//Definir arrays de [aros/llaveros/despachos]
-	
+```
+Arreglos
+ -
+ - Arreglos que corresponden a Aretes Llaveros y a los costos de despachos (envíos)
+ ```
 	Dimension aros[8]
 	Dimension nombres_aro[8] 
 	Dimension llaveros[6]
 	Dimension nombres_llaveros[6]
 	Dimension despachos[5]
-	
-	// Variables iniciales
-	
+```
+Valores iniciales de variables y arreglos
+ -
+ - Valores iniciales de variables
+ ```
 	separador<-"|-----------------------------------------------------------------| "
 	impuesto =0.19
 	peso_aro<- 9
@@ -90,6 +137,10 @@ Algoritmo Proyecto_Modulo1
 	mont_aro<-0
 	mont_llav<-0
 	descuento_total<-1
+ ```
+
+ - Valores de Arreglos
+ ```
 	aros[i] <- 0
 	aros[1] <- 2000
 	aros[2] <- 2200
@@ -123,16 +174,18 @@ Algoritmo Proyecto_Modulo1
 	despachos[2] <- 5000
 	despachos[3] <- 10000
 	despachos[4] <- 30000
-	
-	
-	//Bienvenida
+ ```
+ Bienvenida
+ -
+ - Bienvenida y consulta si es cliente nuevo (esta pregunta determina si tendrá un cupón de descuento). Añado además una comprobación si se a ingresado una alternativa válida, la cual contiene un bucle Repetir que haga la pregunta correspondiente hasta que se ingrese una alternativa adecuada, evitando fallos en la selección del cupón de descuento dentro de la función "calcular_descuento".
+ ```
 	escribir "Bienbenidos a Aretes Nube"
 	escribir "Somos una tienda online de aretes y llaveros a por mayor"
-	Escribir "Actualmente tenemos un descuento si llevas m�s unidades de aros y diez llaveros"
-	Escribir "100 unidades de aros m�s 10 llavero 10 % de descuento"
-	Escribir "200 unidades de aros m�s 10 llavero 20 % de descuento"
-	Escribir "300 unidades de aros m�s 10 llavero 30 % de descuento"
-	escribir "�Es usted cliente nuevo?"
+	Escribir "Actualmente tenemos un descuento si llevas más unidades de aros y diez llaveros"
+	Escribir "100 unidades de aros más 10 llavero 10 % de descuento"
+	Escribir "200 unidades de aros más 10 llavero 20 % de descuento"
+	Escribir "300 unidades de aros más 10 llavero 30 % de descuento"
+	escribir "¿Es usted cliente nuevo?"
 	escribir "Indique su respuesta con Si o No"
 	leer respuesta_client
 	
@@ -158,12 +211,15 @@ Algoritmo Proyecto_Modulo1
 			escribir separador
 		Fin Si
 	Fin Si
-	
-	//Primer ciclo de compra
-	
+ ```
+  Bucles de compra
+ -
+ - Bucle que contiene el primer ciclo de compra. Este está compuesto por la selección de alternativas, unidades y comprobación de alternativas validas.
+
+ ```
 	repetir 
 		
-		escribir "Digite el numero de producto"
+		escribir "Elija el numero de producto"
 		escribir "1. " nombres_aro[1] " $" aros[1]
 		escribir "2. " nombres_aro[2] " $" aros[2]
 		escribir "3. " nombres_aro[3] " $" aros[3]
@@ -173,17 +229,17 @@ Algoritmo Proyecto_Modulo1
 		escribir "7. " nombres_aro[7] " $" aros[7]
 		leer respuesta_aro
 		
-		//Comprobaci�n ingreso de opciones validas
+		//Comprobación ingreso de opciones validas
 		
 		Mientras respuesta_aro = 0 O respuesta_aro >7 
 			Escribir "Introduzca un numero de producto valido"
 			leer respuesta_aro
 		fin mientras 
 		
-		Escribir "�Cuantas unidades quiere llevar?"
+		Escribir "¿Cuantas unidades quiere llevar?"
 		leer unidad1
 		
-		//Comprobaci�n ingreso unidades validas
+		//Comprobación ingreso unidades validas
 		
 		Si unidad1 = 0  Entonces
 			Repetir
@@ -232,7 +288,7 @@ Algoritmo Proyecto_Modulo1
 			De Otro Modo:
 		Fin Segun
 		
-		//Operaciones para a�adir peso y unidades
+		//Operaciones para añadir peso y unidades
 		
 		unidades_aros<-suma ( unidades_aros,unidad1 )
 		peso_unidad1<- multiplicacion ( peso_aro,unidades_aros )
@@ -242,7 +298,7 @@ Algoritmo Proyecto_Modulo1
 		Escribir "Actualmente su carrito es de " carrito_actual
 		Escribir "Unidades totales son: " unidades_aros
 		Escribir "El peso de los aretes son: " peso_unidad1 "Gm"
-		escribir "Desea a�adir algun arete m�s"
+		escribir "Desea añadir algun arete más"
 		escribir "Indique su respuesta con Si o No"
 		leer respuesta_ciclo1
 		
@@ -263,10 +319,11 @@ Algoritmo Proyecto_Modulo1
 			Fin Si
 		Fin Si
 	hasta que respuesta_ciclo1 = "no"
-	
-	// Ciclo 2 de compra
-	
-	Escribir "�Desea llevar algun llavero?"
+ ```
+- Bucle que contiene el segundo ciclo de compra, (Este se encuentra posterior a la alternativa de no entrar en dicho ciclo). Su estructura es similar a la del primer ciclo.
+
+ ```
+	Escribir "¿Desea llevar algun llavero?"
 	escribir "Indique su respuesta con Si o No"
 	leer respuesta_ciclo2
 	
@@ -293,7 +350,7 @@ Algoritmo Proyecto_Modulo1
 	
 	
 	mientras respuesta_ciclo2 = "si"
-		escribir "Digite el numero de producto"
+		escribir "Elija algun producto"
 		escribir "1. " nombres_llaveros[1] " $" llaveros[1]
 		escribir "2. " nombres_llaveros[2] " $" llaveros[2]
 		escribir "3. " nombres_llaveros[3] " $" llaveros[3]
@@ -301,17 +358,17 @@ Algoritmo Proyecto_Modulo1
 		escribir "5. " nombres_llaveros[5] " $" llaveros[5]
 		leer respuesta_llav
 		
-		//Comprobaci�n ingreso de opciones validas
+		//Comprobación ingreso de opciones validas
 		
 		mientras respuesta_llav = 0 O respuesta_llav >5
 			Escribir "Introduzca un numero de producto valido"
 			leer respuesta_llav
 		fin mientras
 		
-		Escribir "�Cuantas unidades quiere llevar?"
+		Escribir "¿cuantas unidades quiere llevar?"
 		leer unidad2
 		
-		//Comprobaci�n ingreso unidades validas
+		//Comprobación ingreso unidades validas
 		
 		Si unidad2 = 0  Entonces
 			Repetir
@@ -352,7 +409,7 @@ Algoritmo Proyecto_Modulo1
 			De Otro Modo:	
 		Fin Segun
 		
-		//Operaciones para a�adir peso y unidades
+		//Operaciones para añadir peso y unidades
 		
 		unidades_llav<-suma ( unidades_llav,unidad2 )
 		peso_unidad2<-multiplicacion ( peso_llavero,unidades_llav )
@@ -362,7 +419,7 @@ Algoritmo Proyecto_Modulo1
 		Escribir "Actualmente su carrito es de " carrito_actual
 		Escribir "Unidades totales son: " unidades_llav
 		Escribir "El peso de lo aros son: " peso_unidad2 "Gm"
-		escribir "Desea a�adir algun llavero m�s"
+		escribir "Desea añadir algun llavero más"
 		escribir "Indique su respuesta con Si o No"
 		leer respuesta_ciclo2
 		
@@ -382,17 +439,20 @@ Algoritmo Proyecto_Modulo1
 				escribir separador
 			Fin Si
 		Fin Si
-	fin mientras 
-	
-	// Etapa de opciones de eliminar
-	
+	fin mientras
+ ```
+Ramificacion final
+ -
+ 
+ - En estas alternativas se puede elegir el eliminar los aros o llaveros, si se escoge el no eliminar ningún artículo el algoritmo salta a la selección del tipo de despacho.
+ ```
 	Escribir "Unidades aros__________________________: " unidades_aros 
 	Escribir "Unidades llaveros______________________: " unidades_llav
 	Escribir "PESO TOTAL_____________________________: " suma(peso_unidad1,peso_unidad2) "Gm"
 	escribir "AROS___________________________________: " mont_aro
 	Escribir "LLAVEROS_______________________________: " mont_llav
 	Escribir "TOTAL__________________________________: " carrito_actual
-	Escribir "�Desea eliminar algo de su carrito?"
+	Escribir "¿Desea eliminar algo de su carrito?"
 	Escribir "Escriba (no) si quiere proceder al pago"
 	Escribir "Escriba (aros) para eliminar los aros del carro"
 	Escribir "Escriba (llaveros) para eliminar los llaveros del carro"
@@ -429,13 +489,17 @@ Algoritmo Proyecto_Modulo1
 			De Otro Modo:
 		Fin Segun
 	Fin Si
-	
-	//Rutas para finalizar la compra
-	
-	si elim_algo = "aros" O elim_algo = "llaveros" Entonces
+```
+
+ 
+ - La Ramificación continua según la alternativa elegida, dentro de estas se encuentran las opciones de elegir el tipo de envió que puede ser. "Local" para retiro en tienda, "rm" para envió dentro de la región metropolitana, "regional" para envió entre regiones y "internacional" para envíos fuera del país, a estas elecciones se les aplica la función de calcular peso y se añade el cargo adicional por carga.
+
+- Finalmente se determina según la función "calcular_descuento", el valor total a pagar y se imprime en pantalla lo que se a pagado en aretes, llaveros, IVA (impuesto al valor agregado en chile), y el costo del envió.
+ ```
+si elim_algo = "aros" O elim_algo = "llaveros" Entonces
 		Segun elim_algo Hacer
 			
-				//Ruta eliminar aros
+			//Ruta eliminar aros
 			
 			"aros":
 				
@@ -825,3 +889,11 @@ Algoritmo Proyecto_Modulo1
 	FinSi
 	
 FinAlgoritmo
+```
+### Notas:
+ Los valores de los productos están pensados en la moneda local (Peso chileno).
+- Los costos de envíos aplicados por carga no corresponden a valores reales, son solo de uso para la realización del proyecto.
+- El peso de los productos esta hecho en Gramos.
+- En chile a los aretes también se les llama "aros".
+
+Gracias por leer las notas.
