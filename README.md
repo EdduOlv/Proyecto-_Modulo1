@@ -1,3 +1,6 @@
+![UDD logo](https://github.com/EdduOlv/Proyecto-_Modulo1/assets/156525513/2c9572c9-af59-4edd-a716-f23cc96296b4)
+
+
 # Proyecto Modulo 1 Sistema de Costos
 
 Proyecto realizado en PSeInt, el fin es el desarrollo de un algoritmo que calcule el precio final de un producto. El algoritmo tiene que considerar los siguientes requerimientos:
